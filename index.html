@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nosso Amor ❤️</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .section {
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #d63384;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .counter-container {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 20px 0;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .counter {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .counter-item {
+            background: #d63384;
+            color: white;
+            padding: 15px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .counter-number {
+            font-size: 2rem;
+            font-weight: bold;
+            display: block;
+        }
+
+        .counter-label {
+            font-size: 0.8rem;
+            opacity: 0.9;
+        }
+
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .photo-slot {
+            aspect-ratio: 1;
+            background: rgba(255, 255, 255, 0.8);
+            border: 3px dashed #d63384;
+            width: 170px;
+            height: 250px;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .imagensmeses{
+            aspect-ratio: 1;
+            background: rgba(255, 255, 255, 0.8);
+            border: 3px dashed #d63384;
+            width: 430px;
+            height: 250px;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+
+        .photo-slot:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(214, 51, 132, 0.3);
+        }
+
+        .photo-slot img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        .photo-slot input {
+            display: none;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: #d63384;
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            background: rgba(255, 255, 255, 0.9);
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 15px;
+            position: relative;
+            width: calc(50% - 30px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: calc(50% + 30px);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #d63384;
+            border-radius: 50%;
+            top: 25px;
+        }
+
+        .timeline-item:nth-child(odd)::before {
+            right: -40px;
+        }
+
+        .timeline-item:nth-child(even)::before {
+            left: -40px;
+        }
+
+        .month-title {
+            color: #d63384;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .month-content {
+            display: grid;
+            gap: 15px;
+        }
+
+        .month-photo {
+            width: 100%;
+            height: 150px;
+            background: rgba(214, 51, 132, 0.1);
+            border: 2px dashed #d63384;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .month-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .month-text {
+            width: 100%;
+            min-height: 80px;
+            padding: 10px;
+            border: 2px solid #d63384;
+            border-radius: 10px;
+            resize: vertical;
+            font-family: inherit;
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .birthday-container {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .cake {
+            font-size: 5rem;
+            margin: 30px 0;
+            position: relative;
+            display: inline-block;
+        }
+
+        .candles {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.5rem;
+        }
+
+        .candle {
+            display: inline-block;
+            margin: 0 5px;
+            animation: flicker 1s infinite alternate;
+        }
+
+        @keyframes flicker {
+            0% { opacity: 1; }
+            100% { opacity: 0.7; }
+        }
+
+        .birthday-message {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+
+        .birthday-photos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .gift-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 60vh;
+            text-align: center;
+        }
+
+        .gift-box {
+            width: 200px;
+            height: 200px;
+            background: #d63384;
+            border-radius: 20px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 30px 0;
+            transform-style: preserve-3d;
+        }
+
+        .gift-box:hover {
+            transform: scale(1.1);
+        }
+
+        .gift-lid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 50%;
+            background: #d63384;
+            border-radius: 20px 20px 5px 5px;
+            transform-origin: bottom;
+            transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            z-index: 2;
+        }
+
+        .gift-base {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 50%;
+            background: #d63384;
+            border-radius: 5px 5px 20px 20px;
+        }
+
+        .gift-box.opened .gift-lid {
+            transform: rotateX(-120deg) translateZ(10px);
+        }
+
+        .gift-box::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 20px;
+            background: #ffd700;
+            transform: translateY(-50%);
+            z-index: 3;
+        }
+
+        .gift-box::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 20px;
+            background: #ffd700;
+            transform: translateX(-50%);
+            z-index: 3;
+        }
+
+        .gift-bow {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 3rem;
+            color: #ffd700;
+            z-index: 4;
+            transition: all 0.8s ease;
+        }
+
+        .gift-box.opened .gift-bow {
+            transform: translateX(-50%) translateY(-30px) rotateZ(20deg);
+            opacity: 0.7;
+        }
+
+        .sparkles {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #ffd700;
+            border-radius: 50%;
+            opacity: 0;
+            animation: sparkleAnimation 1.5s ease-out forwards;
+        }
+
+        @keyframes sparkleAnimation {
+            0% {
+                opacity: 1;
+                transform: scale(0) rotate(0deg);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1) rotate(180deg);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0) rotate(360deg);
+            }
+        }
+
+        .confetti {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #ff69b4;
+            animation: confettiAnimation 2s ease-out forwards;
+        }
+
+        @keyframes confettiAnimation {
+            0% {
+                opacity: 1;
+                transform: translateY(0) rotate(0deg);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(200px) rotate(720deg);
+            }
+        }
+
+        .gift-glow {
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: -20px;
+            bottom: -20px;
+            border-radius: 30px;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.3) 0%, transparent 70%);
+            opacity: 0;
+            animation: glowPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes glowPulse {
+            0%, 100% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.1);
+            }
+        }
+
+        .gift-content {
+            display: none;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 20px;
+            margin-top: 20px;
+            animation: giftReveal 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+            transform: translateY(50px) scale(0.8);
+            opacity: 0;
+        }
+
+        .gift-content.show {
+            display: block;
+        }
+
+        @keyframes giftReveal {
+            0% {
+                opacity: 0;
+                transform: translateY(50px) scale(0.8) rotateX(-10deg);
+            }
+            50% {
+                opacity: 0.8;
+                transform: translateY(-10px) scale(1.05) rotateX(5deg);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1) rotateX(0deg);
+            }
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px;
+            display: flex;
+            justify-content: space-around;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.1);
+        }
+
+        .nav-btn {
+            background: none;
+            border: none;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.5rem;
+        }
+
+        .nav-btn.active {
+            background: #d63384;
+            color: white;
+            transform: scale(1.2);
+        }
+
+        .hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .heart {
+            position: absolute;
+            color: rgba(214, 51, 132, 0.3);
+            font-size: 20px;
+            animation: float 6s infinite linear;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .modal-content img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .presente {
+            height: 450px;
+            width: 300px;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .timeline::before {
+                left: 20px;
+            }
+            
+            .timeline-item {
+                width: calc(100% - 50px);
+                left: 50px !important;
+            }
+            
+            .timeline-item::before {
+                left: -40px !important;
+            }
+            
+            .counter {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .gift-box {
+                width: 150px;
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hearts" id="hearts"></div>
+    
+    <div class="container">
+        <!-- Página Inicial -->
+        <div class="section active" id="home">
+            <div class="header">
+                <h1>Nosso Amor</h1>
+                <p>Juntos desde 3 de Outubro de 2024</p>
+            </div>
+            
+            <div class="counter-container">
+                <h2>Tempo Juntos</h2>
+                <div class="counter" id="counter">
+                    <div class="counter-item">
+                        <span class="counter-number" id="days">0</span>
+                        <span class="counter-label">Dias</span>
+                    </div>
+                    <div class="counter-item">
+                        <span class="counter-number" id="hours">0</span>
+                        <span class="counter-label">Horas</span>
+                    </div>
+                    <div class="counter-item">
+                        <span class="counter-number" id="minutes">0</span>
+                        <span class="counter-label">Minutos</span>
+                    </div>
+                    <div class="counter-item">
+                        <span class="counter-number" id="seconds">0</span>
+                        <span class="counter-label">Segundos</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="photo-gallery" id="photoGallery">
+                <div>
+                    <img id="foto1" class="photo-slot" src="edina4.png" alt="">
+                </div>
+                <div>
+                    <img id="foto1" class="photo-slot" src="edina5.png" alt="">
+                </div>
+                <div>
+                    <img id="foto1" class="photo-slot" src="edina6.png" alt="">
+                </div>
+                <div>
+                    <img id="foto1" class="photo-slot" src="edina7.png" alt="">
+                </div>
+                <div>
+                    <img id="foto1" class="photo-slot" src="edina8.png" alt="">
+                </div>
+                <div>
+                    <img id="foto1" class="photo-slot" src="edina9.png" alt="">
+                </div>
+            </div>
+        </div>
+
+        <!-- Máquina do Tempo -->
+        <div class="section" id="timeline">
+            <div class="header">
+                <h1>Nossa Máquina do Tempo</h1>
+                <p>Cada mês da nossa história</p>
+            </div>
+            
+            <div class="timeline" id="timelineContainer">
+                <div class="timeline-item">
+                    <div class="month-title">Outubro 2024 - Nosso Começo</div>
+                    <div class="month-content">
+                        <div>
+                    <img id="foto1" class="imagensmeses" src="outubro.png" alt="">
+                    </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="month-title">Novembro 2024</div>
+                    <div class="month-content">
+                    <img id="foto1" class="imagensmeses" src="novembro.jpg" alt="">
+                    </div>
+                    </div>
+                
+                <div class="timeline-item">
+                    <div class="month-title">Dezembro 2024 - Nosso Primeiro Natal</div>
+                    <div class="month-content">
+                    <img id="foto1" class="imagensmeses" src="dezembro.jpg" alt="">
+                    </div>
+                    </div>
+                
+                <div class="timeline-item">
+                    <div class="month-title">Janeiro 2025 - Um Novo Ano Com Ela</div>
+                    <div class="month-content">
+                    <img id="foto1" class="imagensmeses" src="janeiro.jpg" alt="">
+                    </div>
+                    </div>
+        
+
+        <div class="timeline-item">
+                    <div class="month-title">Fevereiro 2025 - Meu Primeiro Aniversário Com Ela </div>
+                    <div class="month-content">
+                    <img id="foto1" class="imagensmeses" src="fevereiro.jpg" alt="">
+                    </div>
+                    </div>
+
+                <div class="timeline-item">
+                    <div class="month-title">Março 2025</div>
+                    <div class="month-content">
+                    <img id="foto1" class="imagensmeses" src="marco.jpg" alt="">
+                    </div>
+                    </div>
+
+                <div class="timeline-item">
+                    <div class="month-title">Abril 2025</div>
+                    <div class="month-content">
+                    <img id="foto1" class="imagensmeses" src="abril.jpg" alt="">
+                    </div>
+                    </div>
+
+                <div class="timeline-item">
+                    <div class="month-title">Maio 2025 - Nosso Dia</div>
+                    <div class="month-content">
+                    <img id="foto1" class="imagensmeses" src="maio.jpg" alt="">
+                    </div>
+                    </div>
+
+                <div class="timeline-item">
+                    <div class="month-title">Junho 2025</div>
+                    <div class="month-content">
+                    <img id="foto1" class="imagensmeses" src="junho.jpg" alt="">
+                    </div>
+                    </div>
+
+                <div class="timeline-item">
+                    <div class="month-title">Julho 2025</div>
+                    <div class="month-content">
+                    <img id="foto1" class="imagensmeses" src="julho.png" alt="">
+                    </div>
+                    </div>
+
+                <div class="timeline-item">
+                    <div class="month-title">Agosto 2025</div>
+                    <div class="month-content">
+                    <img id="foto1" class="imagensmeses" src="agosto.png" alt="">
+                    </div>
+                    </div>
+
+                <div class="timeline-item">
+                    <div class="month-title">Setembro 2025 - Esta Chegando o Aniversário</div>
+                    <div class="month-content">
+                    <img id="foto1" class="imagensmeses" src="setembro.png" alt="">
+                    </div>
+                    </div>
+                </div>
+                </div>
+
+        <!-- Aniversário -->
+        <div class="section" id="birthday">
+            <div class="header">
+                <h1>Feliz Aniversário!</h1>
+                <p>1 de Outubro - Seu dia especial</p>
+            </div>
+            
+            <div class="birthday-container">
+                <div class="cake">
+                    🎂
+                    <div class="candles">
+                        <span class="candle">🕯️</span>
+                        <span class="candle">🕯️</span>
+                        <span class="candle">🕯️</span>
+                    </div>
+                </div>
+                
+                <div class="birthday-message">
+                    <p>Feliz aniversário meu amor, eu desejo tudo de melhor para você, quero que você saiba que eu te amo muito meu amor e para todo o sempre vou amar, obrigado por estar fazendo parte da minha vida e que continue o resto dela ao meu lado (querendo ou não kakakak), tenho muito orgulho da pessoa que tu ÉS.</p>
+                </div>
+                
+                <div class="birthday-photos">
+                    <div class="photo-slot" onclick="selectPhoto(this)">
+                        <img id="foto1" src="edina1.jpg" alt="">
+                    </div>
+                    <div class="photo-slot" onclick="selectPhoto(this)">
+                        <img id="foto1" src="edina2.png" alt="">
+                    </div>
+                    <div class="photo-slot" onclick="selectPhoto(this)">
+                        <img id="foto1" src="edina3.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section" id="surprise">
+            <div class="header">
+                <h1>Um Presente Especial Para Alguem Especial!!</h1>
+                <p>Clique na caixa para abrir!</p>
+            </div>
+            
+            <div class="gift-container">
+                <div class="gift-box" id="giftBox" onclick="openGift()">
+                    <div class="gift-glow"></div>
+                    <div class="gift-base"></div>
+                    <div class="gift-lid"></div>
+                    <div class="gift-bow">🎀</div>
+                    <div class="sparkles" id="sparkles"></div>
+                </div>
+                 
+                <div class="gift-content" id="giftContent">
+                    <h2>Parabéns Amor</h2>
+                    <div class="gift-photo" onclick="selectGiftPhoto()">
+                        <img class="presente" id="foto1" src="presente.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para visualizar imagens -->
+    <div id="imageModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <div class="modal-content">
+            <img id="modalImage" src="/placeholder.svg" alt="">
+        </div>
+    </div>
+
+    <!-- Navegação -->
+    <div class="navigation">
+        <button class="nav-btn active" onclick="showSection('home')">🏠</button>
+        <button class="nav-btn" onclick="showSection('timeline')">⏰</button>
+        <button class="nav-btn" onclick="showSection('birthday')">🎂</button>
+        <button class="nav-btn" onclick="showSection('surprise')">🎁</button>
+    </div>
+
+    <script>
+        // Data de início do relacionamento
+        const startDate = new Date('2024-10-03T00:00:00');
+        
+        // Função para atualizar o contador
+        function updateCounter() {
+            const now = new Date();
+            const diff = now - startDate;
+            
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            document.getElementById('days').textContent = days;
+            document.getElementById('hours').textContent = hours;
+            document.getElementById('minutes').textContent = minutes;
+            document.getElementById('seconds').textContent = seconds;
+        }
+        
+        // Atualizar contador a cada segundo
+        setInterval(updateCounter, 1000);
+        updateCounter();
+        
+        // Função para mostrar seções
+        function showSection(sectionId) {
+            // Esconder todas as seções
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => section.classList.remove('active'));
+            
+            // Mostrar seção selecionada
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Atualizar navegação
+            const navBtns = document.querySelectorAll('.nav-btn');
+            navBtns.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+        
+        // Função para selecionar foto
+        function selectPhoto(element) {
+            const input = element.querySelector('input[type="file"]');
+            input.click();
+        }
+        
+        // Função para carregar foto
+        function loadPhoto(input) {
+            const file = input.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.onclick = () => openModal(e.target.result);
+                    
+                    const slot = input.parentElement;
+                    slot.innerHTML = '';
+                    slot.appendChild(img);
+                    slot.appendChild(input);
+                    
+                    // Salvar no localStorage
+                    const index = Array.from(slot.parentElement.children).indexOf(slot);
+                    const sectionId = slot.closest('.section').id;
+                    savePhoto(sectionId, index, e.target.result);
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+        
+        // Função para selecionar foto do mês
+        function selectMonthPhoto(element) {
+            const input = element.querySelector('input[type="file"]');
+            input.click();
+        }
+        
+        // Função para carregar foto do mês
+        function loadMonthPhoto(input) {
+            const file = input.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.onclick = () => openModal(e.target.result);
+                    
+                    const slot = input.parentElement;
+                    slot.innerHTML = '';
+                    slot.appendChild(img);
+                    slot.appendChild(input);
+                    
+                    // Salvar no localStorage
+                    const monthIndex = Array.from(slot.closest('.timeline').children).indexOf(slot.closest('.timeline-item'));
+                    saveMonthPhoto(monthIndex, e.target.result);
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+        
+        // Função para abrir presente
+        function openGift() {
+            const giftBox = document.getElementById('giftBox');
+            const giftContent = document.getElementById('giftContent');
+            const sparklesContainer = document.getElementById('sparkles');
+            
+            // Adicionar classe de abertura
+            giftBox.classList.add('opened');
+            
+            // Criar efeito de brilhos
+            createSparkles(sparklesContainer);
+            
+            // Criar confetes
+            setTimeout(() => {
+                createConfetti(giftBox);
+            }, 400);
+            
+            // Mostrar conteúdo após animação
+            setTimeout(() => {
+                giftContent.classList.add('show');
+            }, 800);
+            
+            // Desabilitar clique após abertura
+            giftBox.style.pointerEvents = 'none';
+        }
+        
+        function createSparkles(container) {
+            const colors = ['#ffd700', '#ff69b4', '#00bfff', '#ff6347', '#98fb98'];
+            
+            for (let i = 0; i < 12; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                
+                // Posição aleatória em círculo
+                const angle = (i / 12) * 2 * Math.PI;
+                const radius = 60 + Math.random() * 40;
+                const x = Math.cos(angle) * radius;
+                const y = Math.sin(angle) * radius;
+                
+                sparkle.style.left = x + 'px';
+                sparkle.style.top = y + 'px';
+                sparkle.style.animationDelay = (i * 0.1) + 's';
+                
+                container.appendChild(sparkle);
+                
+                // Remover após animação
+                setTimeout(() => {
+                    sparkle.remove();
+                }, 1500);
+            }
+        }
+        
+        function createConfetti(container) {
+            const colors = ['#ff69b4', '#ffd700', '#00bfff', '#ff6347', '#98fb98', '#dda0dd'];
+            
+            for (let i = 0; i < 20; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.left = (Math.random() * 200 - 100) + 'px';
+                confetti.style.top = (Math.random() * 200 - 100) + 'px';
+                confetti.style.animationDelay = (Math.random() * 0.5) + 's';
+                confetti.style.animationDuration = (1.5 + Math.random()) + 's';
+                
+                // Formas aleatórias
+                if (Math.random() > 0.5) {
+                    confetti.style.borderRadius = '0';
+                    confetti.style.transform = 'rotate(45deg)';
+                }
+                
+                container.appendChild(confetti);
+                
+                // Remover após animação
+                setTimeout(() => {
+                    confetti.remove();
+                }, 2500);
+            }
+        }
+        
+        // Função para abrir modal de imagem
+        function openModal(src) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            modal.style.display = 'block';
+            modalImg.src = src;
+        }
+        
+        // Função para fechar modal
+        function closeModal() {
+            document.getElementById('imageModal').style.display = 'none';
+        }
+        
+        // Fechar modal clicando fora da imagem
+        window.onclick = function(event) {
+            const modal = document.getElementById('imageModal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+        
+        // Funções de salvamento no localStorage
+        function savePhoto(sectionId, index, src) {
+            const key = `photo_${sectionId}_${index}`;
+            localStorage.setItem(key, src);
+        }
+        
+        function saveMonthPhoto(monthIndex, src) {
+            const key = `month_photo_${monthIndex}`;
+            localStorage.setItem(key, src);
+        }
+        
+        function saveMonthText(textarea, monthIndex) {
+            const key = `month_text_${monthIndex}`;
+            localStorage.setItem(key, textarea.value);
+        }
+        
+        function saveBirthdayMessage(message) {
+            localStorage.setItem('birthday_message', message);
+        }
+        
+        function saveGiftPhoto(src) {
+            localStorage.setItem('gift_photo', src);
+        }
+        
+        function saveGiftMessage(message) {
+            localStorage.setItem('gift_message', message);
+        }
+        
+        // Função para carregar dados salvos
+        function loadSavedData() {
+            // Carregar fotos da galeria principal
+            const photoSlots = document.querySelectorAll('#home .photo-slot');
+            photoSlots.forEach((slot, index) => {
+                const saved = localStorage.getItem(`photo_home_${index}`);
+                if (saved) {
+                    const img = document.createElement('img');
+                    img.src = saved;
+                    img.onclick = () => openModal(saved);
+                    const input = slot.querySelector('input');
+                    slot.innerHTML = '';
+                    slot.appendChild(img);
+                    slot.appendChild(input);
+                }
+            });
+            
+            // Carregar fotos e textos da timeline
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            timelineItems.forEach((item, index) => {
+                const photoSaved = localStorage.getItem(`month_photo_${index}`);
+                const textSaved = localStorage.getItem(`month_text_${index}`);
+                
+                if (photoSaved) {
+                    const photoSlot = item.querySelector('.month-photo');
+                    const img = document.createElement('img');
+                    img.src = photoSaved;
+                    img.onclick = () => openModal(photoSaved);
+                    const input = photoSlot.querySelector('input');
+                    photoSlot.innerHTML = '';
+                    photoSlot.appendChild(img);
+                    photoSlot.appendChild(input);
+                }
+                
+                if (textSaved) {
+                    const textarea = item.querySelector('.month-text');
+                    textarea.value = textSaved;
+                }
+            });
+            
+            // Carregar fotos do aniversário
+            const birthdaySlots = document.querySelectorAll('#birthday .photo-slot');
+            birthdaySlots.forEach((slot, index) => {
+                const saved = localStorage.getItem(`photo_birthday_${index}`);
+                if (saved) {
+                    const img = document.createElement('img');
+                    img.src = saved;
+                    img.onclick = () => openModal(saved);
+                    const input = slot.querySelector('input');
+                    slot.innerHTML = '';
+                    slot.appendChild(img);
+                    slot.appendChild(input);
+                }
+            });
+            
+            // Carregar mensagem de aniversário
+            const birthdayMessage = localStorage.getItem('birthday_message');
+            if (birthdayMessage) {
+                document.querySelector('#birthday textarea').value = birthdayMessage;
+            }
+            
+            // Carregar presente
+            const giftPhoto = localStorage.getItem('gift_photo');
+            if (giftPhoto) {
+                const giftSlot = document.querySelector('.gift-photo');
+                const img = document.createElement('img');
+                img.src = giftPhoto;
+                img.onclick = () => openModal(giftPhoto);
+                const input = giftSlot.querySelector('input');
+                giftSlot.innerHTML = '';
+                giftSlot.appendChild(img);
+                giftSlot.appendChild(input);
+            }
+            
+            const giftMessage = localStorage.getItem('gift_message');
+            if (giftMessage) {
+                document.querySelector('.gift-message').value = giftMessage;
+            }
+        }
+        
+        // Função para criar corações flutuantes
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+            document.getElementById('hearts').appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 6000);
+        }
+        
+        // Criar corações a cada 2 segundos
+        setInterval(createHeart, 2000);
+        
+        // Carregar dados salvos quando a página carregar
+        window.onload = function() {
+            loadSavedData();
+        };
+    </script>
+</body>
+</html>
